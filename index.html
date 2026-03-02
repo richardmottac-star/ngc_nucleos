@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
+
 :root{--g:#1a5f2a;--g2:#2d8a3e;--g3:#e8f5e9;--bg:#f0f4f8;--r:14px;--sh:0 4px 20px rgba(0,0,0,.10)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Open Sans',sans-serif;background:var(--bg);color:#1e293b}
@@ -211,6 +212,36 @@ table.rt tr:hover td{background:#f8fafc}
 .saved-badge.on{display:flex}
 
 @media(max-width:768px){.ag{grid-template-columns:1fr}.full{grid-column:1}.grid{grid-template-columns:1fr}.mapa-sb{display:none}}
+
+/* TECNICO COM CONTATOS */
+.tec-m-wrap{background:#f8fafc;border-radius:9px;margin-bottom:8px;overflow:hidden;border:1px solid #e2e8f0}
+.tec-m-header{display:flex;align-items:center;gap:9px;padding:10px 13px;font-size:.86rem;font-weight:700;color:#1e293b}
+.tec-m-header i{color:var(--g);flex-shrink:0}
+.tec-m-contacts{display:flex;gap:8px;padding:0 13px 10px;flex-wrap:wrap}
+.tec-contact-btn{display:flex;align-items:center;gap:6px;padding:5px 11px;border-radius:20px;font-size:.75rem;font-weight:700;text-decoration:none;transition:all .2s}
+.tec-contact-btn.cel{background:#dbeafe;color:#1d4ed8}
+.tec-contact-btn.cel:hover{background:#bfdbfe}
+.tec-contact-btn.wpp{background:#dcfce7;color:#166534}
+.tec-contact-btn.wpp:hover{background:#bbf7d0}
+.tec-m-wrap.apoio-m{background:#fffbeb;border-color:#fde68a}
+.tec-m-wrap.apoio-m .tec-m-header i{color:#d97706}
+/* Contatos gerais nucleo */
+.nucleo-contatos{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:9px;padding:12px 14px;margin-top:4px}
+.nucleo-contatos h5{font-size:.75rem;font-weight:800;color:var(--g);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+/* Card tec com contatos */
+.tec-linha-wrap{margin-bottom:5px}
+.tec-linha-nome{display:flex;align-items:flex-start;gap:7px;font-size:.81rem;color:#374151;font-weight:600}
+.tec-linha-nome i{color:var(--g);font-size:.84rem;width:15px;text-align:center;flex-shrink:0;margin-top:2px}
+.tec-linha-btns{display:flex;gap:5px;margin-left:22px;margin-top:3px;flex-wrap:wrap}
+.tec-linha-btns a{display:flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;font-size:.7rem;font-weight:700;text-decoration:none}
+.tec-linha-btns a.cel{background:#dbeafe;color:#1d4ed8}
+.tec-linha-btns a.wpp{background:#dcfce7;color:#166534}
+/* Admin form tec */
+.tec-contact-fields{background:#f0f9ff;border:1px solid #bae6fd;border-radius:9px;padding:12px;margin-top:4px}
+.tec-contact-fields label{font-size:.75rem;font-weight:700;color:#0369a1;display:block;margin-bottom:3px}
+.tec-contact-fields input{width:100%;padding:7px 10px;border:1.5px solid #bae6fd;border-radius:7px;font-size:.83rem;outline:none;font-family:'Open Sans',sans-serif;margin-bottom:8px}
+.tec-contact-fields input:focus{border-color:#0284c7}
+
 </style>
 </head>
 <body>
@@ -248,7 +279,7 @@ table.rt tr:hover td{background:#f8fafc}
       <p class="coord-cargo">Secretaria da Casa Civil – SCC</p>
       <div class="coord-links">
         <a href="tel:+5548991218415" class="coord-a"><i class="fas fa-phone"></i> (48) 99121-8415</a>
-        <a href="/cdn-cgi/l/email-protection#e09a81848992ce8685929285899281a083819381838996898cce9383ce878f96ce8292" class="coord-a"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="b5cfd4d1dcc79bd3d0c7c7d0dcc7d4f5d6d4c6d4d6dcc3dcd99bc6d69bd2dac39bd7c7">[email&#160;protected]</span></a>
+        <a href="mailto:zadir@casacivil.sc.gov.br" class="coord-a"><i class="fas fa-envelope"></i> zadir@casacivil.sc.gov.br</a>
       </div>
       <div class="coord-end"><i class="fas fa-map-marker-alt"></i><span>Secretaria da Casa Civil — Centro Administrativo do Governo de SC — Rodovia SC-401, Km 5, 4600 — Saco Grande, Florianópolis – SC</span></div>
     </div>
@@ -281,10 +312,11 @@ table.rt tr:hover td{background:#f8fafc}
         <label class="cl"><input type="checkbox" id="c1" checked><span>Técnico</span></label>
         <label class="cl"><input type="checkbox" id="c2" checked><span>Núcleo / Sigla</span></label>
         <label class="cl"><input type="checkbox" id="c3" checked><span>E-mail</span></label>
-        <label class="cl"><input type="checkbox" id="c4" checked><span>Telefone(s)</span></label>
+        <label class="cl"><input type="checkbox" id="c4" checked><span>Celular/WhatsApp</span></label>
         <label class="cl"><input type="checkbox" id="c5" checked><span>Municípios</span></label>
         <label class="cl"><input type="checkbox" id="c6"><span>Endereço</span></label>
-        <label class="cl"><input type="checkbox" id="c7"><span>Técnico de Apoio</span></label>
+        <label class="cl"><input type="checkbox" id="c7"><span>Téc. de Apoio</span></label>
+        <label class="cl"><input type="checkbox" id="c8"><span>Tel. Núcleo</span></label>
       </div>
       <div class="brow">
         <button class="bpdf" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Gerar PDF</button>
@@ -311,7 +343,11 @@ table.rt tr:hover td{background:#f8fafc}
         <input type="hidden" id="eIdx">
         <div class="fg"><label class="fl">Núcleo Regional *</label><select class="fc" id="fNucForm"><option value="">Selecione...</option></select></div>
         <div class="fg"><label class="fl">Nome do Técnico *</label><input class="fc" type="text" id="fNome" placeholder="Nome completo"></div>
-        <div class="fg"><label class="fl">Telefones (Enter p/ adicionar)</label><div class="ta"><div class="tw" id="telW"></div><input class="ti" id="telI" placeholder="(48) 99999-0000" onkeydown="addTag(event,'tel')"></div></div>
+        <div class="tec-contact-fields fg">
+          <label><i class="fas fa-mobile-alt"></i> Celular / WhatsApp do Técnico</label>
+          <input type="text" id="fCel" placeholder="(48) 99999-0000 — Celular">
+          <input type="text" id="fWpp" placeholder="(48) 99999-0000 — WhatsApp (se diferente do celular)">
+        </div>
         <div class="fg"><label class="fl">E-mail</label><input class="fc" type="email" id="fEmail" placeholder="email@casacivil.sc.gov.br"></div>
         <button class="pb" onclick="salvar()"><i class="fas fa-save"></i><span id="btnTxt">Cadastrar Técnico</span></button>
         <div style="text-align:center;margin-top:9px"><button style="background:none;border:none;color:#64748b;cursor:pointer;font-size:.79rem" onclick="limpar()">Cancelar / Limpar</button></div>
@@ -352,8 +388,8 @@ table.rt tr:hover td{background:#f8fafc}
             <div class="fg"><label class="fl">Endereço</label><textarea class="fc" id="eEnd" rows="3"></textarea></div>
           </div>
           <div>
-            <div class="fg"><label class="fl">Telefones (Enter)</label><div class="ta"><div class="tw" id="tnW"></div><input class="ti" id="tnI" placeholder="Telefone..." onkeydown="addTag(event,'tnuc')"></div></div>
-            <div class="fg"><label class="fl">Municípios (Enter)</label><div class="ta" style="min-height:110px"><div class="tw" id="mnW"></div><input class="ti" id="mnI" placeholder="Município..." onkeydown="addTag(event,'mun')"></div></div>
+            <div class="fg"><label class="fl">Telefones do Escritório/Núcleo (Enter para adicionar)</label><div class="ta"><div class="tw" id="tnW"></div><input class="ti" id="tnI" placeholder="Telefone do núcleo/escritório..." onkeydown="addTag(event,'tnuc')"></div></div>
+            <div class="fg"><label class="fl">Municípios (Enter para adicionar)</label><div class="ta" style="min-height:110px"><div class="tw" id="mnW"></div><input class="ti" id="mnI" placeholder="Município..." onkeydown="addTag(event,'mun')"></div></div>
             <button class="pb" onclick="salvarNuc()"><i class="fas fa-save"></i> Salvar Alterações do Núcleo</button>
           </div>
         </div>
@@ -371,17 +407,18 @@ table.rt tr:hover td{background:#f8fafc}
       <div class="ms"><h4><i class="fas fa-users"></i> Técnicos Responsáveis</h4><div id="mTec"></div></div>
       <div class="ms" id="mApoioSec" style="display:none"><h4 class="ah2"><i class="fas fa-hands-helping"></i> Técnicos de Apoio</h4><div id="mApoio"></div></div>
       <div class="ms"><h4><i class="fas fa-city"></i> Municípios Atendidos</h4><div class="mun-g" id="mMun"></div></div>
-      <div class="ms"><h4><i class="fas fa-phone-alt"></i> Contato</h4><div id="mCt"></div></div>
+      <div class="ms"><h4><i class="fas fa-phone-alt"></i> Contatos do Núcleo</h4><div id="mCt"></div></div>
       <div class="ms"><h4><i class="fas fa-map-marked-alt"></i> Endereço</h4><div class="end-b"><i class="fas fa-location-dot"></i><p id="mEnd"></p></div></div>
     </div>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ============================================================
-// CORES E DADOS PADRÃO
+// CORES E DADOS
 // ============================================================
 const COR=["#e74c3c","#2980b9","#27ae60","#8e44ad","#e67e22","#16a085","#c0392b","#1a5f2a","#2471a3","#d35400","#6c3483","#117a65","#922b21","#1f618d","#a04000","#1e8449","#7d6608","#546e7a","#1a5276","#784212","#145a32"];
+
 
 const COORDS=[
   {lat:-28.9353,lng:-49.4857},{lat:-26.9194,lng:-49.0661},{lat:-27.4013,lng:-51.2258},
@@ -393,40 +430,53 @@ const COORDS=[
   {lat:-28.4670,lng:-49.0060},{lat:-27.0069,lng:-51.1441},{lat:-26.8742,lng:-52.4026}
 ];
 
+
 const N_DEFAULT=[
-  {nome:"ARARANGUÁ",sigla:"SCC/NARU",municipios:["Araranguá","Balneário Arroio do Silva","Balneário Gaivota","Ermo","Jacinto Machado","Maracajá","Meleiro","Morro Grande","Passo de Torres","Praia Grande","Santa Rosa do Sul","São João do Sul","Sombrio","Timbé do Sul","Turvo"],tecnicos:["Elison de Maceda","Mariluci Inacio Alexandre"],telefones:["(48) 99601-6037","(48) 3529-0063","(48) 99613-9427"],email:"naru@casacivil.sc.gov.br",endereco:"AMESC – Av. XV de Novembro nº911 – Centro Cívico – Araranguá"},
-  {nome:"BLUMENAU",sigla:"SCC/NBLU",municipios:["Apiúna","Ascurra","Benedito Novo","Blumenau","Botuverá","Brusque","Doutor Pedrinho","Gaspar","Guabiruba","Indaial","Pomerode","Rio dos Cedros","Rodeio","Timbó"],tecnicos:["Simone Fusinato Rezende","Mariléia Aparecida Jacomel"],telefones:["(47) 3378-8008","(47) 98444-1239"],email:"nblu@casacivil.sc.gov.br",endereco:"Rua Braz Wanka nº238 – Vila Nova – Blumenau"},
-  {nome:"CAMPOS NOVOS",sigla:"SCC/NCPN",municipios:["Abdon Batista","Brunópolis","Campos Novos","Celso Ramos","Monte Carlo","Vargem","Zortéa"],tecnicos:["Valderi Miorelli Dissegna"],telefones:["(49) 99985-3577","(49) 3541-3314"],email:"ncpn@casacivil.sc.gov.br",endereco:"Rua Coronel Farrapo nº1119 – Campos Novos"},
-  {nome:"CHAPECÓ",sigla:"SCC/NCHP",municipios:["Águas Frias","Águas de Chapecó","Arvoredo","Caxambu do Sul","Chapecó","Cordilheira Alta","Coronel Freitas","Formosa do Sul","Guatambu","Jardinópolis","Nova Erechim","Nova Itaberaba","Paial","Pinhalzinho","Planalto Alegre","Santiago do Sul","São Carlos","Serra Alta","Sul Brasil","União do Oeste"],tecnicos:["Miriam Carminatti","Isabel Cristina Silva da Silva","Juliana De Souza"],telefones:["(49) 9880-46993","(49) 2049-7426"],email:"nchp@casacivil.sc.gov.br",endereco:"Av. Nereu Ramos nº31E – 5º Andar – Chapecó"},
-  {nome:"CONCÓRDIA",sigla:"SCC/NCCD",municipios:["Alto Bela Vista","Arabutã","Concórdia","Ipira","Ipumirim","Irani","Itá","Jaborá","Lindóia do Sul","Peritiba","Piratuba","Presidente Castello Branco","Seara","Xavantina"],tecnicos:["Maria Goreti Korb","Clodoaldo Fornari"],telefones:["(49) 99994-6366","(49) 3482-6021"],email:"nccd@casacivil.sc.gov.br",endereco:"Travessa Irmã Leopoldina nº136 – Concórdia"},
-  {nome:"CRICIÚMA",sigla:"SCC/NCRI",municipios:["Balneário Rincão","Cocal do Sul","Criciúma","Forquilhinha","Içara","Lauro Müller","Morro da Fumaça","Nova Veneza","Orleans","Siderópolis","Treviso","Urussanga"],tecnicos:["Geisa Carla Pereira","Graciane Mondardo Constantino","Andreza Resende De Souza"],telefones:["(48) 3403-1018","(48) 99993-6775"],email:"ncri@casacivil.sc.gov.br",endereco:"AMREC – Av. Santos Dumont nº855 – Criciúma"},
-  {nome:"CURITIBANOS",sigla:"SCC/NCRT",municipios:["Curitibanos","Frei Rogério","Ponte Alta do Norte","Santa Cecília","São Cristóvão do Sul"],tecnicos:["Sandra Marilce Diavon Alvez"],telefones:["(49) 99956-6774"],email:"ncrt@casacivil.sc.gov.br",endereco:"Rua Cornélio de Haro Varela nº1835 – Curitibanos"},
-  {nome:"FLORIANÓPOLIS",sigla:"SCC/NFLN",municipios:["Águas Mornas","Alfredo Wagner","Angelina","Anitápolis","Antônio Carlos","Biguaçu","Canelinha","Florianópolis","Garopaba","Governador Celso Ramos","Leoberto Leal","Major Gercino","Nova Trento","Palhoça","Paulo Lopes","Rancho Queimado","Santo Amaro da Imperatriz","São Bonifácio","São João Batista","São José","São Pedro de Alcântara","Tijucas"],tecnicos:["Tanimeri Schveitzer","Richard Motta Coelho"],telefones:["(48) 3665-2219","(48) 99959-6104"],email:"nfln@casacivil.sc.gov.br",endereco:"Centro Administrativo – SC-401 Km5 – Florianópolis"},
-  {nome:"ITAJAÍ",sigla:"SCC/NITJ",municipios:["Balneário Camboriú","Balneário Piçarras","Bombinhas","Camboriú","Ilhota","Itajaí","Itapema","Luiz Alves","Navegantes","Penha","Porto Belo"],tecnicos:["Juliana da Costa","Sandra Cezária Rochi Rocha"],telefones:["(47) 99612-6775","(49) 99116-4827"],email:"nitj@casacivil.sc.gov.br",endereco:"AMFRI – Rua Luiz Lopes Gonzaga nº1655 – Itajaí"},
-  {nome:"JARAGUÁ DO SUL",sigla:"SCC/NJAR",municipios:["Barra Velha","Corupá","Guaramirim","Jaraguá do Sul","Massaranduba","São João do Itaperiú","Schroeder"],tecnicos:["Emelly Pricyllah Weege Menegotti Rocha","Nelson Antonio Baniski"],telefones:["(47) 3276-9238","(47) 99622-2332"],email:"njar@casacivil.sc.gov.br",endereco:"Rua Thufie Manfud nº155 – Jaraguá do Sul"},
-  {nome:"JOAÇABA",sigla:"SCC/NJCB",municipios:["Água Doce","Capinzal","Catanduvas","Erval Velho","Herval d'Oeste","Ibicaré","Joaçaba","Lacerdópolis","Luzerna","Ouro","Treze Tílias","Vargem Bonita"],tecnicos:["Cláudia Aparecida Marinello Petronilio","Larissa Mendes Da Silva"],telefones:["(49) 99932-7128","(49) 3551-8335"],email:"njcb@casacivil.sc.gov.br",endereco:"Rua Roberto Trompowski nº88 – Joaçaba"},
-  {nome:"JOINVILLE",sigla:"SCC/NJLE",municipios:["Araquari","Balneário Barra do Sul","Campo Alegre","Garuva","Itapoá","Joinville","Rio Negrinho","São Bento do Sul","São Francisco do Sul"],tecnicos:["Rosana Sales","Meire Diana Diógenes Bessa"],telefones:["(47) 99711-2090","(47) 3461-1204"],email:"njle@casacivil.sc.gov.br",endereco:"AMUNESC – Rua Max Colin nº1843 – Joinville"},
-  {nome:"LAGES",sigla:"SCC/NLGS",municipios:["Anita Garibaldi","Bocaina do Sul","Bom Jardim da Serra","Bom Retiro","Campo Belo do Sul","Capão Alto","Cerro Negro","Correia Pinto","Lages","Otacílio Costa","Painel","Palmeira","Ponte Alta","Rio Rufino","São Joaquim","São José do Cerrito","Urubici","Urupema"],tecnicos:["Lori Terezinha da Silveira","Marilza Andrade Corrêa Justino","Gislainy Benthien Oliveira Balduino","Grace Kelly Schemes Oliveira"],telefones:["(49) 99972-9436","(49) 99965-1695"],email:"nlgs@casacivil.sc.gov.br",endereco:"AMURES – Rua Otacílio Vieira da Costa nº112 – Lages"},
-  {nome:"MAFRA",sigla:"SCC/NMFR",municipios:["Bela Vista do Toldo","Canoinhas","Irineópolis","Itaiópolis","Mafra","Major Vieira","Monte Castelo","Papanduva","Porto União","Três Barras"],tecnicos:["Angelita Hack","Janaína Frederico Dittrich"],telefones:["(47) 3647-0395","(47) 98898-3579"],email:"nmfr@casacivil.sc.gov.br",endereco:"AMPLANORTE – Rua Prof. Maria do Espírito Santo nº400 – Mafra"},
-  {nome:"MARAVILHA",sigla:"SCC/NMRH",municipios:["Bom Jesus do Oeste","Caibi","Campo Erê","Cunha Porã","Cunhataí","Flor do Sertão","Iraceminha","Maravilha","Modelo","Palmitos","Riqueza","Romelândia","Saltinho","Santa Terezinha do Progresso","São Miguel da Boa Vista","Saudades","Tigrinhos"],tecnicos:["Noici Graeff Ranzi","Marcelo Luiz Schmitt"],telefones:["(49) 3664-6537","(49) 99917-8963"],email:"nmrh@casacivil.sc.gov.br",endereco:"Rua José de Anchieta nº199 – Maravilha"},
-  {nome:"RIO DO SUL",sigla:"SCC/NRSL",municipios:["Agrolândia","Agronômica","Atalanta","Aurora","Braço do Trombudo","Chapadão do Lageado","Dona Emma","Ibirama","Imbuia","Ituporanga","José Boiteux","Laurentino","Lontras","Mirim Doce","Petrolândia","Pouso Redondo","Presidente Getúlio","Presidente Nereu","Rio do Campo","Rio do Oeste","Rio do Sul","Salete","Santa Terezinha","Taió","Trombudo Central","Vidal Ramos","Vitor Meireles","Witmarsum"],tecnicos:["Rita Inês Martini Probst","Sandra Paul","Ana Leticia Wloch de Oliveira"],telefones:["(47) 3531-3800","(47) 99962-2646"],email:"nrsl@casacivil.sc.gov.br",endereco:"Rua Ruy Barbosa nº221 – Rio do Sul"},
-  {nome:"SÃO LOURENÇO DO OESTE",sigla:"SCC/NSLO",municipios:["Coronel Martins","Galvão","Irati","Jupiá","Novo Horizonte","Quilombo","São Bernardino","São Lourenço do Oeste"],tecnicos:["Claudia Cella","Elquier Smaniotto Luzzatto"],telefones:["(49) 99926-1221","(49) 3372-1013"],email:"nslo@casacivil.sc.gov.br",endereco:"Rua Nereu Ramos nº1225 – São Lourenço do Oeste"},
-  {nome:"SÃO MIGUEL DO OESTE",sigla:"SCC/NSMO",municipios:["Anchieta","Bandeirante","Barra Bonita","Belmonte","Descanso","Dionísio Cerqueira","Guaraciaba","Guarujá do Sul","Iporã do Oeste","Itapiranga","Mondaí","Palma Sola","Paraíso","Princesa","Santa Helena","São João do Oeste","São José do Cedro","São Miguel do Oeste","Tunápolis"],tecnicos:["Marinês do Carmo C. R. da Silva","Ivonete Bueno de Camargo Klein","Daniela Tavares Fiorentin"],telefones:["(49) 3631-2903","(49) 99926-1694"],email:"nsmo@casacivil.sc.gov.br",endereco:"Rua Oswaldo Cruz nº167 – São Miguel do Oeste"},
-  {nome:"TUBARÃO",sigla:"SCC/NTBR",municipios:["Armazém","Braço do Norte","Capivari de Baixo","Grão Pará","Gravatal","Imaruí","Imbituba","Jaguaruna","Laguna","Pedras Grandes","Pescaria Brava","Rio Fortuna","Sangão","Santa Rosa de Lima","São Ludgero","São Martinho","Treze de Maio","Tubarão"],tecnicos:["Clara Cristina Meurer Vicente","Marlene Teodoro Ramos da Silva","Ana Paula Alano Farias Fraçao","Maria Ângela Porto Cardozo"],telefones:["(48) 99904-0847","(48) 99926-4564"],email:"ntbr@casacivil.sc.gov.br",endereco:"AMUREL – Rua Rio Branco nº67 – Tubarão"},
-  {nome:"VIDEIRA",sigla:"SCC/NVDR",municipios:["Arroio Trinta","Caçador","Calmon","Fraiburgo","Ibiam","Iomerê","Lebon Régis","Macieira","Matos Costa","Pinheiro Preto","Rio das Antas","Salto Veloso","Tangará","Timbó Grande","Videira"],tecnicos:["Ana Claudia Carvalho Costa","Elisandra Boscato Giuriatti"],telefones:["(49) 3533-5461","(49) 99911-0209"],email:"nvdr@casacivil.sc.gov.br",endereco:"Rodovia SC 355 – Km53,8 – Videira"},
-  {nome:"XANXERÊ",sigla:"SCC/NXAN",municipios:["Abelardo Luz","Bom Jesus","Entre Rios","Faxinal dos Guedes","Ipuaçu","Lajeado Grande","Marema","Ouro Verde","Passos Maia","Ponte Serrada","São Domingos","Vargeão","Xanxerê","Xaxim"],tecnicos:["Nereu Zanchet","Marcia Maria Kaschuk Mascarello"],telefones:["(49) 99911-6047","(49) 3382-2032"],email:"nxan@casacivil.sc.gov.br",endereco:"Rua José de Miranda nº321 – Xanxerê"}
+  {nome:"ARARANGUÁ",sigla:"SCC/NARU",municipios:["Araranguá","Balneário Arroio do Silva","Balneário Gaivota","Ermo","Jacinto Machado","Maracajá","Meleiro","Morro Grande","Passo de Torres","Praia Grande","Santa Rosa do Sul","São João do Sul","Sombrio","Timbé do Sul","Turvo"],tecnicos:[{nome:"Elison de Maceda",cel:"(48) 99601-6037",whatsapp:"(48) 99601-6037"},{nome:"Mariluci Inacio Alexandre",cel:"(48) 99613-9427",whatsapp:"(48) 99613-9427"}],telefones:["(48) 3529-0063"],email:"naru@casacivil.sc.gov.br",endereco:"AMESC – Av. XV de Novembro nº911 – Centro Cívico – Araranguá"},
+  {nome:"BLUMENAU",sigla:"SCC/NBLU",municipios:["Apiúna","Ascurra","Benedito Novo","Blumenau","Botuverá","Brusque","Doutor Pedrinho","Gaspar","Guabiruba","Indaial","Pomerode","Rio dos Cedros","Rodeio","Timbó"],tecnicos:[{nome:"Simone Fusinato Rezende",cel:"(47) 98444-1239",whatsapp:"(47) 98444-1239"},{nome:"Mariléia Aparecida Jacomel",cel:"",whatsapp:""}],telefones:["(47) 3378-8008"],email:"nblu@casacivil.sc.gov.br",endereco:"Rua Braz Wanka nº238 – Vila Nova – Blumenau"},
+  {nome:"CAMPOS NOVOS",sigla:"SCC/NCPN",municipios:["Abdon Batista","Brunópolis","Campos Novos","Celso Ramos","Monte Carlo","Vargem","Zortéa"],tecnicos:[{nome:"Valderi Miorelli Dissegna",cel:"(49) 99985-3577",whatsapp:"(49) 99985-3577"}],telefones:["(49) 3541-3314"],email:"ncpn@casacivil.sc.gov.br",endereco:"Rua Coronel Farrapo nº1119 – Campos Novos"},
+  {nome:"CHAPECÓ",sigla:"SCC/NCHP",municipios:["Águas Frias","Águas de Chapecó","Arvoredo","Caxambu do Sul","Chapecó","Cordilheira Alta","Coronel Freitas","Formosa do Sul","Guatambu","Jardinópolis","Nova Erechim","Nova Itaberaba","Paial","Pinhalzinho","Planalto Alegre","Santiago do Sul","São Carlos","Serra Alta","Sul Brasil","União do Oeste"],tecnicos:[{nome:"Miriam Carminatti",cel:"(49) 9880-46993",whatsapp:"(49) 9880-46993"},{nome:"Isabel Cristina Silva da Silva",cel:"",whatsapp:""},{nome:"Juliana De Souza",cel:"",whatsapp:""}],telefones:["(49) 2049-7426"],email:"nchp@casacivil.sc.gov.br",endereco:"Av. Nereu Ramos nº31E – 5º Andar – Chapecó"},
+  {nome:"CONCÓRDIA",sigla:"SCC/NCCD",municipios:["Alto Bela Vista","Arabutã","Concórdia","Ipira","Ipumirim","Irani","Itá","Jaborá","Lindóia do Sul","Peritiba","Piratuba","Presidente Castello Branco","Seara","Xavantina"],tecnicos:[{nome:"Maria Goreti Korb",cel:"(49) 99994-6366",whatsapp:"(49) 99994-6366"},{nome:"Clodoaldo Fornari",cel:"",whatsapp:""}],telefones:["(49) 3482-6021"],email:"nccd@casacivil.sc.gov.br",endereco:"Travessa Irmã Leopoldina nº136 – Concórdia"},
+  {nome:"CRICIÚMA",sigla:"SCC/NCRI",municipios:["Balneário Rincão","Cocal do Sul","Criciúma","Forquilhinha","Içara","Lauro Müller","Morro da Fumaça","Nova Veneza","Orleans","Siderópolis","Treviso","Urussanga"],tecnicos:[{nome:"Geisa Carla Pereira",cel:"(48) 99993-6775",whatsapp:"(48) 99993-6775"},{nome:"Graciane Mondardo Constantino",cel:"",whatsapp:""},{nome:"Andreza Resende De Souza",cel:"",whatsapp:""}],telefones:["(48) 3403-1018"],email:"ncri@casacivil.sc.gov.br",endereco:"AMREC – Av. Santos Dumont nº855 – Criciúma"},
+  {nome:"CURITIBANOS",sigla:"SCC/NCRT",municipios:["Curitibanos","Frei Rogério","Ponte Alta do Norte","Santa Cecília","São Cristóvão do Sul"],tecnicos:[{nome:"Sandra Marilce Diavon Alvez",cel:"(49) 99956-6774",whatsapp:"(49) 99956-6774"}],telefones:[],email:"ncrt@casacivil.sc.gov.br",endereco:"Rua Cornélio de Haro Varela nº1835 – Curitibanos"},
+  {nome:"FLORIANÓPOLIS",sigla:"SCC/NFLN",municipios:["Águas Mornas","Alfredo Wagner","Angelina","Anitápolis","Antônio Carlos","Biguaçu","Canelinha","Florianópolis","Garopaba","Governador Celso Ramos","Leoberto Leal","Major Gercino","Nova Trento","Palhoça","Paulo Lopes","Rancho Queimado","Santo Amaro da Imperatriz","São Bonifácio","São João Batista","São José","São Pedro de Alcântara","Tijucas"],tecnicos:[{nome:"Tanimeri Schveitzer",cel:"(48) 99959-6104",whatsapp:"(48) 99959-6104"},{nome:"Richard Motta Coelho",cel:"",whatsapp:""}],telefones:["(48) 3665-2219"],email:"nfln@casacivil.sc.gov.br",endereco:"Centro Administrativo – SC-401 Km5 – Florianópolis"},
+  {nome:"ITAJAÍ",sigla:"SCC/NITJ",municipios:["Balneário Camboriú","Balneário Piçarras","Bombinhas","Camboriú","Ilhota","Itajaí","Itapema","Luiz Alves","Navegantes","Penha","Porto Belo"],tecnicos:[{nome:"Juliana da Costa",cel:"(47) 99612-6775",whatsapp:"(47) 99612-6775"},{nome:"Sandra Cezária Rochi Rocha",cel:"(49) 99116-4827",whatsapp:"(49) 99116-4827"}],telefones:[],email:"nitj@casacivil.sc.gov.br",endereco:"AMFRI – Rua Luiz Lopes Gonzaga nº1655 – Itajaí"},
+  {nome:"JARAGUÁ DO SUL",sigla:"SCC/NJAR",municipios:["Barra Velha","Corupá","Guaramirim","Jaraguá do Sul","Massaranduba","São João do Itaperiú","Schroeder"],tecnicos:[{nome:"Emelly Pricyllah Weege Menegotti Rocha",cel:"(47) 99622-2332",whatsapp:"(47) 99622-2332"},{nome:"Nelson Antonio Baniski",cel:"",whatsapp:""}],telefones:["(47) 3276-9238"],email:"njar@casacivil.sc.gov.br",endereco:"Rua Thufie Manfud nº155 – Jaraguá do Sul"},
+  {nome:"JOAÇABA",sigla:"SCC/NJCB",municipios:["Água Doce","Capinzal","Catanduvas","Erval Velho","Herval d'Oeste","Ibicaré","Joaçaba","Lacerdópolis","Luzerna","Ouro","Treze Tílias","Vargem Bonita"],tecnicos:[{nome:"Cláudia Aparecida Marinello Petronilio",cel:"(49) 99932-7128",whatsapp:"(49) 99932-7128"},{nome:"Larissa Mendes Da Silva",cel:"",whatsapp:""}],telefones:["(49) 3551-8335"],email:"njcb@casacivil.sc.gov.br",endereco:"Rua Roberto Trompowski nº88 – Joaçaba"},
+  {nome:"JOINVILLE",sigla:"SCC/NJLE",municipios:["Araquari","Balneário Barra do Sul","Campo Alegre","Garuva","Itapoá","Joinville","Rio Negrinho","São Bento do Sul","São Francisco do Sul"],tecnicos:[{nome:"Rosana Sales",cel:"(47) 99711-2090",whatsapp:"(47) 99711-2090"},{nome:"Meire Diana Diógenes Bessa",cel:"",whatsapp:""}],telefones:["(47) 3461-1204"],email:"njle@casacivil.sc.gov.br",endereco:"AMUNESC – Rua Max Colin nº1843 – Joinville"},
+  {nome:"LAGES",sigla:"SCC/NLGS",municipios:["Anita Garibaldi","Bocaina do Sul","Bom Jardim da Serra","Bom Retiro","Campo Belo do Sul","Capão Alto","Cerro Negro","Correia Pinto","Lages","Otacílio Costa","Painel","Palmeira","Ponte Alta","Rio Rufino","São Joaquim","São José do Cerrito","Urubici","Urupema"],tecnicos:[{nome:"Lori Terezinha da Silveira",cel:"(49) 99972-9436",whatsapp:"(49) 99972-9436"},{nome:"Marilza Andrade Corrêa Justino",cel:"(49) 99965-1695",whatsapp:"(49) 99965-1695"},{nome:"Gislainy Benthien Oliveira Balduino",cel:"",whatsapp:""},{nome:"Grace Kelly Schemes Oliveira",cel:"",whatsapp:""}],telefones:[],email:"nlgs@casacivil.sc.gov.br",endereco:"AMURES – Rua Otacílio Vieira da Costa nº112 – Lages"},
+  {nome:"MAFRA",sigla:"SCC/NMFR",municipios:["Bela Vista do Toldo","Canoinhas","Irineópolis","Itaiópolis","Mafra","Major Vieira","Monte Castelo","Papanduva","Porto União","Três Barras"],tecnicos:[{nome:"Angelita Hack",cel:"(47) 98898-3579",whatsapp:"(47) 98898-3579"},{nome:"Janaína Frederico Dittrich",cel:"",whatsapp:""}],telefones:["(47) 3647-0395"],email:"nmfr@casacivil.sc.gov.br",endereco:"AMPLANORTE – Rua Prof. Maria do Espírito Santo nº400 – Mafra"},
+  {nome:"MARAVILHA",sigla:"SCC/NMRH",municipios:["Bom Jesus do Oeste","Caibi","Campo Erê","Cunha Porã","Cunhataí","Flor do Sertão","Iraceminha","Maravilha","Modelo","Palmitos","Riqueza","Romelândia","Saltinho","Santa Terezinha do Progresso","São Miguel da Boa Vista","Saudades","Tigrinhos"],tecnicos:[{nome:"Noici Graeff Ranzi",cel:"(49) 99917-8963",whatsapp:"(49) 99917-8963"},{nome:"Marcelo Luiz Schmitt",cel:"",whatsapp:""}],telefones:["(49) 3664-6537"],email:"nmrh@casacivil.sc.gov.br",endereco:"Rua José de Anchieta nº199 – Maravilha"},
+  {nome:"RIO DO SUL",sigla:"SCC/NRSL",municipios:["Agrolândia","Agronômica","Atalanta","Aurora","Braço do Trombudo","Chapadão do Lageado","Dona Emma","Ibirama","Imbuia","Ituporanga","José Boiteux","Laurentino","Lontras","Mirim Doce","Petrolândia","Pouso Redondo","Presidente Getúlio","Presidente Nereu","Rio do Campo","Rio do Oeste","Rio do Sul","Salete","Santa Terezinha","Taió","Trombudo Central","Vidal Ramos","Vitor Meireles","Witmarsum"],tecnicos:[{nome:"Rita Inês Martini Probst",cel:"(47) 99962-2646",whatsapp:"(47) 99962-2646"},{nome:"Sandra Paul",cel:"",whatsapp:""},{nome:"Ana Leticia Wloch de Oliveira",cel:"",whatsapp:""}],telefones:["(47) 3531-3800"],email:"nrsl@casacivil.sc.gov.br",endereco:"Rua Ruy Barbosa nº221 – Rio do Sul"},
+  {nome:"SÃO LOURENÇO DO OESTE",sigla:"SCC/NSLO",municipios:["Coronel Martins","Galvão","Irati","Jupiá","Novo Horizonte","Quilombo","São Bernardino","São Lourenço do Oeste"],tecnicos:[{nome:"Claudia Cella",cel:"(49) 99926-1221",whatsapp:"(49) 99926-1221"},{nome:"Elquier Smaniotto Luzzatto",cel:"",whatsapp:""}],telefones:["(49) 3372-1013"],email:"nslo@casacivil.sc.gov.br",endereco:"Rua Nereu Ramos nº1225 – São Lourenço do Oeste"},
+  {nome:"SÃO MIGUEL DO OESTE",sigla:"SCC/NSMO",municipios:["Anchieta","Bandeirante","Barra Bonita","Belmonte","Descanso","Dionísio Cerqueira","Guaraciaba","Guarujá do Sul","Iporã do Oeste","Itapiranga","Mondaí","Palma Sola","Paraíso","Princesa","Santa Helena","São João do Oeste","São José do Cedro","São Miguel do Oeste","Tunápolis"],tecnicos:[{nome:"Marinês do Carmo C. R. da Silva",cel:"(49) 99926-1694",whatsapp:"(49) 99926-1694"},{nome:"Ivonete Bueno de Camargo Klein",cel:"",whatsapp:""},{nome:"Daniela Tavares Fiorentin",cel:"",whatsapp:""}],telefones:["(49) 3631-2903"],email:"nsmo@casacivil.sc.gov.br",endereco:"Rua Oswaldo Cruz nº167 – São Miguel do Oeste"},
+  {nome:"TUBARÃO",sigla:"SCC/NTBR",municipios:["Armazém","Braço do Norte","Capivari de Baixo","Grão Pará","Gravatal","Imaruí","Imbituba","Jaguaruna","Laguna","Pedras Grandes","Pescaria Brava","Rio Fortuna","Sangão","Santa Rosa de Lima","São Ludgero","São Martinho","Treze de Maio","Tubarão"],tecnicos:[{nome:"Clara Cristina Meurer Vicente",cel:"(48) 99904-0847",whatsapp:"(48) 99904-0847"},{nome:"Marlene Teodoro Ramos da Silva",cel:"(48) 99926-4564",whatsapp:"(48) 99926-4564"},{nome:"Ana Paula Alano Farias Fraçao",cel:"",whatsapp:""},{nome:"Maria Ângela Porto Cardozo",cel:"",whatsapp:""}],telefones:[],email:"ntbr@casacivil.sc.gov.br",endereco:"AMUREL – Rua Rio Branco nº67 – Tubarão"},
+  {nome:"VIDEIRA",sigla:"SCC/NVDR",municipios:["Arroio Trinta","Caçador","Calmon","Fraiburgo","Ibiam","Iomerê","Lebon Régis","Macieira","Matos Costa","Pinheiro Preto","Rio das Antas","Salto Veloso","Tangará","Timbó Grande","Videira"],tecnicos:[{nome:"Ana Claudia Carvalho Costa",cel:"(49) 99911-0209",whatsapp:"(49) 99911-0209"},{nome:"Elisandra Boscato Giuriatti",cel:"",whatsapp:""}],telefones:["(49) 3533-5461"],email:"nvdr@casacivil.sc.gov.br",endereco:"Rodovia SC 355 – Km53,8 – Videira"},
+  {nome:"XANXERÊ",sigla:"SCC/NXAN",municipios:["Abelardo Luz","Bom Jesus","Entre Rios","Faxinal dos Guedes","Ipuaçu","Lajeado Grande","Marema","Ouro Verde","Passos Maia","Ponte Serrada","São Domingos","Vargeão","Xanxerê","Xaxim"],tecnicos:[{nome:"Nereu Zanchet",cel:"(49) 99911-6047",whatsapp:"(49) 99911-6047"},{nome:"Marcia Maria Kaschuk Mascarello",cel:"",whatsapp:""}],telefones:["(49) 3382-2032"],email:"nxan@casacivil.sc.gov.br",endereco:"Rua José de Miranda nº321 – Xanxerê"}
 ];
 
 // ============================================================
 // LOCALSTORAGE
 // ============================================================
-const LS_N='ngc_nucleos_v1', LS_A='ngc_apoios_v1';
+const LS_N='ngc_nucleos_v2', LS_A='ngc_apoios_v1';
 let N=[], APOIOS=[];
 
 function carregarDados(){
   try{
     const sn=localStorage.getItem(LS_N), sa=localStorage.getItem(LS_A);
-    N=sn?JSON.parse(sn):JSON.parse(JSON.stringify(N_DEFAULT));
+    if(sn){
+      const parsed=JSON.parse(sn);
+      // migração: se tecnicos ainda é array de strings, converter
+      N=parsed.map(n=>{
+        if(n.tecnicos.length>0 && typeof n.tecnicos[0]==='string'){
+          n.tecnicos=n.tecnicos.map(t=>{return {nome:t,cel:'',whatsapp:''}});
+        }
+        if(!n.telefones)n.telefones=[];
+        return n;
+      });
+    } else {
+      N=JSON.parse(JSON.stringify(N_DEFAULT));
+    }
     APOIOS=sa?JSON.parse(sa):[];
   }catch(e){N=JSON.parse(JSON.stringify(N_DEFAULT));APOIOS=[];}
 }
@@ -454,14 +504,14 @@ function aba(id,btn){
 }
 
 function iniciarMapaComRetry(tentativa){
-  var el = document.getElementById('leafletMap');
+  var el=document.getElementById('leafletMap');
   if(!el) return;
-  if(el.offsetWidth === 0 || el.offsetHeight === 0){
-    if(tentativa < 30) setTimeout(function(){ iniciarMapaComRetry(tentativa+1); }, 50);
+  if(el.offsetWidth===0||el.offsetHeight===0){
+    if(tentativa<30) setTimeout(function(){iniciarMapaComRetry(tentativa+1);},50);
     return;
   }
-  if(!lMap){ initMapa(); }
-  else { lMap.invalidateSize(true); }
+  if(!lMap){initMapa();}
+  else {lMap.invalidateSize(true);}
 }
 
 function tentarAdmin(btn){
@@ -484,7 +534,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElement
 // APOIOS
 // ============================================================
 function getApoiadores(idx){
-  return APOIOS.filter(a=>a.apoioIdx===idx).map(a=>({nome:N[a.nucIdx].tecnicos[a.tecIdx],nucleo:N[a.nucIdx].sigla}));
+  return APOIOS.filter(a=>a.apoioIdx===idx).map(a=>{
+    const t=N[a.nucIdx].tecnicos[a.tecIdx];
+    return {nome:t?t.nome:'?',nucleo:N[a.nucIdx].sigla};
+  });
 }
 
 // ============================================================
@@ -497,7 +550,9 @@ function renderCards(){
   N.forEach((n,i)=>{
     const c=COR[i],ap=getApoiadores(i);
     let tH=`<div class="sec-label"><i class="fas fa-user-tie"></i> Técnicos</div>`;
-    n.tecnicos.forEach(t=>tH+=`<div class="tec-linha"><i class="fas fa-user-tie"></i><span>${t}</span></div>`);
+    n.tecnicos.forEach(t=>{
+      tH+=`<div class="tec-linha"><i class="fas fa-user-tie"></i><span>${t.nome}</span></div>`;
+    });
     let aH='';
     if(ap.length){aH=`<div class="sec-label apoio"><i class="fas fa-hands-helping"></i> Técnico(s) de Apoio</div>`;ap.forEach(a=>aH+=`<div class="tec-linha apoio"><i class="fas fa-hands-helping"></i><span>${a.nome} <small style="color:#92400e">(${a.nucleo})</small></span></div>`);}
     g.innerHTML+=`<div class="card" style="border-top-color:${c}" onclick="modal(${i})">
@@ -516,12 +571,38 @@ function modal(i){
   document.getElementById('mBar').style.background=c;
   document.getElementById('mNome').textContent=n.nome;
   document.getElementById('mSigla').textContent=n.sigla;
-  document.getElementById('mTec').innerHTML=n.tecnicos.map(t=>`<div class="tec-m"><i class="fas fa-user-tie"></i>${t}</div>`).join('');
+
+  // Técnicos com contatos individuais
+  document.getElementById('mTec').innerHTML=n.tecnicos.map(t=>{
+    let btns='';
+    if(t.cel)btns+=`<a class="tec-contact-btn cel" href="tel:${t.cel.replace(/\D/g,'')}"><i class="fas fa-phone"></i>${t.cel}</a>`;
+    if(t.whatsapp){const wnum=t.whatsapp.replace(/\D/g,'');btns+=`<a class="tec-contact-btn wpp" href="https://wa.me/55${wnum}" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>`;}
+    return `<div class="tec-m-wrap">
+      <div class="tec-m-header"><i class="fas fa-user-tie"></i>${t.nome}</div>
+      ${btns?`<div class="tec-m-contacts">${btns}</div>`:''}
+    </div>`;
+  }).join('');
+
+  // Apoios
   const sec=document.getElementById('mApoioSec');
-  if(ap.length){sec.style.display='block';document.getElementById('mApoio').innerHTML=ap.map(a=>`<div class="tec-m apoio-m"><i class="fas fa-hands-helping"></i>${a.nome} <em style="color:#d97706;font-style:normal;margin-left:4px">(${a.nucleo})</em></div>`).join('');}
-  else sec.style.display='none';
+  if(ap.length){
+    sec.style.display='block';
+    document.getElementById('mApoio').innerHTML=ap.map(a=>`<div class="tec-m-wrap apoio-m">
+      <div class="tec-m-header"><i class="fas fa-hands-helping"></i>${a.nome} <em style="color:#d97706;font-style:normal;font-size:.8rem;margin-left:6px">(${a.nucleo})</em></div>
+    </div>`).join('');
+  } else sec.style.display='none';
+
   document.getElementById('mMun').innerHTML=n.municipios.map(m=>`<span class="mun-t">${m}</span>`).join('');
-  document.getElementById('mCt').innerHTML=n.telefones.map(t=>`<div class="ct-i"><i class="fas fa-phone"></i>${t}</div>`).join('')+`<div class="ct-i"><i class="fas fa-envelope"></i><a href="mailto:${n.email}">${n.email}</a></div>`;
+
+  // Contatos do núcleo (telefones gerais + email)
+  let ctHtml='';
+  if(n.telefones && n.telefones.length){
+    ctHtml+=`<div class="nucleo-contatos"><h5><i class="fas fa-phone-office"></i> Telefones do Escritório</h5>`;
+    n.telefones.forEach(t=>ctHtml+=`<div class="ct-i"><i class="fas fa-phone"></i>${t}</div>`);
+    ctHtml+=`</div>`;
+  }
+  ctHtml+=`<div class="ct-i" style="margin-top:8px"><i class="fas fa-envelope"></i><a href="mailto:${n.email}">${n.email}</a></div>`;
+  document.getElementById('mCt').innerHTML=ctHtml;
   document.getElementById('mEnd').textContent=n.endereco;
   document.getElementById('modOv').classList.add('on');
 }
@@ -535,12 +616,10 @@ function initMapa(){
   if(lMap) return;
   const el=document.getElementById('leafletMap');
   if(!el||el.offsetWidth===0) return;
-
   lMap=L.map('leafletMap',{center:[-27.4,-50.5],zoom:7,zoomControl:false,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19}).addTo(lMap);
   L.control.zoom({position:'topright'}).addTo(lMap);
   L.control.attribution({position:'bottomright',prefix:false}).addTo(lMap).setPrefix('<span style="font-size:9px;color:#94a3b8">© OpenStreetMap · CARTO</span>');
-
   N.forEach((n,i)=>{
     const lbl=n.sigla.split('/')[1]?.slice(1,3)||'??';
     const mk=L.marker([COORDS[i].lat,COORDS[i].lng],{icon:pinIcon(COR[i],lbl,false)})
@@ -551,14 +630,13 @@ function initMapa(){
     mk.on('popupclose',()=>{if(lActiveId===i)setAtivo(null);});
     lMarkers[i]={mk,lbl};
   });
-
   lMap.on('popupclose',()=>{if(lActiveId!==null)setAtivo(null);});
   buildMapaSidebar();
   document.getElementById('mapaSearch').addEventListener('input',e=>buildMapaSidebar(e.target.value));
 }
 
 function pinIcon(cor,lbl,grande){
-  const W=grande?42:34, H=grande?58:47;
+  const W=grande?42:34,H=grande?58:47;
   const svg=`<svg width="${W}" height="${H}" viewBox="0 0 42 58" xmlns="http://www.w3.org/2000/svg">
     <defs><filter id="f${lbl}"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="rgba(0,0,0,.4)"/></filter></defs>
     <path d="M21 2C11.6 2 4 9.6 4 19C4 31 21 56 21 56S38 31 38 19C38 9.6 30.4 2 21 2Z" fill="${cor}" filter="url(#f${lbl})"/>
@@ -569,20 +647,25 @@ function pinIcon(cor,lbl,grande){
 }
 
 function popupHtml(n,i){
-  const ap=getApoiadores(i);
-  const c=COR[i];
-  const dark=esc(c,30);
-  const tecs=n.tecnicos.map(t=>`<div class="lpop-tec"><i class="fas fa-user-tie"></i>${t}</div>`).join('');
+  const ap=getApoiadores(i),c=COR[i],dark=esc(c,30);
+  const tecs=n.tecnicos.map(t=>{
+    let btns='';
+    if(t.cel)btns+=`<a href="tel:${t.cel.replace(/\D/g,'')}" style="color:#86efac;font-size:.68rem;margin-left:4px"><i class="fas fa-phone"></i>${t.cel}</a>`;
+    if(t.whatsapp){const wn=t.whatsapp.replace(/\D/g,'');btns+=`<a href="https://wa.me/55${wn}" target="_blank" style="color:#4ade80;font-size:.68rem;margin-left:6px"><i class="fab fa-whatsapp"></i>WhatsApp</a>`;}
+    return `<div class="lpop-tec" style="flex-direction:column;align-items:flex-start">
+      <div style="display:flex;align-items:center;gap:6px"><i class="fas fa-user-tie"></i>${t.nome}</div>
+      ${btns?`<div style="margin-top:3px;padding-left:18px">${btns}</div>`:''}
+    </div>`;
+  }).join('');
   const apH=ap.length?`<div class="lpop-sec"><i class="fas fa-hands-helping" style="color:#fbbf24;margin-right:4px"></i>Técnicos de Apoio</div>`+ap.map(a=>`<div class="lpop-tec"><i class="fas fa-hands-helping" style="color:#fbbf24"></i>${a.nome} <em style="color:#fbbf24;font-style:normal;font-size:.65rem">(${a.nucleo})</em></div>`).join(''):'';
-  const tels=n.telefones.map(t=>`<div class="lpop-row"><i class="fas fa-phone"></i><span>${t}</span></div>`).join('');
+  const tels=n.telefones&&n.telefones.length?n.telefones.map(t=>`<div class="lpop-row"><i class="fas fa-phone"></i><span>${t}</span></div>`).join(''):'';
   const muns=n.municipios.map(m=>`<span class="lpop-mun">${m}</span>`).join('');
   return `<div>
     <div class="lpop-hd" style="background:linear-gradient(135deg,${c},${dark})">
-      <div class="lpop-sigla">${n.sigla}</div>
-      <div class="lpop-nome">${n.nome}</div>
+      <div class="lpop-sigla">${n.sigla}</div><div class="lpop-nome">${n.nome}</div>
     </div>
     <div class="lpop-bd">
-      <div class="lpop-sec"><i class="fas fa-user-tie" style="color:#86efac;margin-right:4px"></i>Técnicos Responsáveis</div>
+      <div class="lpop-sec"><i class="fas fa-user-tie" style="color:#86efac;margin-right:4px"></i>Técnicos</div>
       ${tecs}${apH}
       <div style="margin-top:6px">${tels}</div>
       <div class="lpop-row"><i class="fas fa-envelope"></i><a href="mailto:${n.email}">${n.email}</a></div>
@@ -594,24 +677,17 @@ function popupHtml(n,i){
 }
 
 function setAtivo(id){
-  if(lActiveId!==null&&lMarkers[lActiveId]){
-    lMarkers[lActiveId].mk.setIcon(pinIcon(COR[lActiveId],lMarkers[lActiveId].lbl,false));
-    lMarkers[lActiveId].mk.setZIndexOffset(0);
-  }
+  if(lActiveId!==null&&lMarkers[lActiveId]){lMarkers[lActiveId].mk.setIcon(pinIcon(COR[lActiveId],lMarkers[lActiveId].lbl,false));lMarkers[lActiveId].mk.setZIndexOffset(0);}
   lActiveId=id;
-  if(id!==null&&lMarkers[id]){
-    lMarkers[id].mk.setIcon(pinIcon(COR[id],lMarkers[id].lbl,true));
-    lMarkers[id].mk.setZIndexOffset(1000);
-  }
+  if(id!==null&&lMarkers[id]){lMarkers[id].mk.setIcon(pinIcon(COR[id],lMarkers[id].lbl,true));lMarkers[id].mk.setZIndexOffset(1000);}
   document.querySelectorAll('.mni').forEach(el=>el.classList.remove('active'));
   if(id!==null){const el=document.getElementById('mni-'+id);if(el){el.classList.add('active');el.scrollIntoView({behavior:'smooth',block:'nearest'});}}
 }
 
 function buildMapaSidebar(f=''){
-  const list=document.getElementById('mapaSidebar');
-  const fl=f.toLowerCase();
+  const list=document.getElementById('mapaSidebar'),fl=f.toLowerCase();
   list.innerHTML='';
-  const vis=N.filter((n,i)=>!fl||n.nome.toLowerCase().includes(fl)||n.sigla.toLowerCase().includes(fl));
+  const vis=N.filter((n)=>!fl||n.nome.toLowerCase().includes(fl)||n.sigla.toLowerCase().includes(fl));
   const lbl=document.createElement('div');lbl.className='mapa-sb-lbl';lbl.textContent=`${vis.length} núcleos`;list.appendChild(lbl);
   N.forEach((n,i)=>{
     if(fl&&!n.nome.toLowerCase().includes(fl)&&!n.sigla.toLowerCase().includes(fl))return;
@@ -620,11 +696,7 @@ function buildMapaSidebar(f=''){
     el.innerHTML=`<div class="mni-pin" style="background:${COR[i]}">${p}</div>
       <div style="flex:1;min-width:0"><div class="mni-nome">${n.nome}</div><div class="mni-sigla">${n.sigla}</div></div>
       <div class="mni-badge">${n.municipios.length}</div>`;
-    el.onclick=()=>{
-      if(!lMap)return;
-      lMap.setView([COORDS[i].lat,COORDS[i].lng],9,{animate:true});
-      setTimeout(()=>{lMarkers[i].mk.openPopup();setAtivo(i);},400);
-    };
+    el.onclick=()=>{if(!lMap)return;lMap.setView([COORDS[i].lat,COORDS[i].lng],9,{animate:true});setTimeout(()=>{lMarkers[i].mk.openPopup();setAtivo(i);},400);};
     list.appendChild(el);
   });
 }
@@ -635,7 +707,7 @@ function buildMapaSidebar(f=''){
 function popApoioSels(){
   const st=document.getElementById('apoioTec');if(!st)return;
   st.innerHTML='<option value="">Selecione...</option>';
-  N.forEach((n,ni)=>n.tecnicos.forEach((t,ti)=>st.innerHTML+=`<option value="${ni}-${ti}">${t} (${n.sigla})</option>`));
+  N.forEach((n,ni)=>n.tecnicos.forEach((t,ti)=>st.innerHTML+=`<option value="${ni}-${ti}">${t.nome} (${n.sigla})</option>`));
   const sn=document.getElementById('apoioNuc');sn.innerHTML='<option value="">Selecione...</option>';
   N.forEach((n,i)=>sn.innerHTML+=`<option value="${i}">${n.nome}</option>`);
 }
@@ -646,26 +718,26 @@ function adicionarApoio(){
   if(ni===ai){alerta('err','O técnico não pode apoiar seu próprio núcleo.');return;}
   if(APOIOS.find(a=>a.nucIdx===ni&&a.tecIdx===ti&&a.apoioIdx===ai)){alerta('err','Este vínculo já existe.');return;}
   APOIOS.push({nucIdx:ni,tecIdx:ti,apoioIdx:ai});salvarDados();renderApoioLista();renderCards();
-  alerta('ok',`${N[ni].tecnicos[ti]} agora apoia ${N[ai].nome}!`);
+  alerta('ok',`${N[ni].tecnicos[ti].nome} agora apoia ${N[ai].nome}!`);
 }
 function remApoio(idx){APOIOS.splice(idx,1);salvarDados();renderApoioLista();renderCards();}
 function renderApoioLista(){
   const el=document.getElementById('apoioLista');
   if(!APOIOS.length){el.innerHTML='<p style="font-size:.82rem;color:#92400e;text-align:center;padding:12px">Nenhum vínculo cadastrado.</p>';return;}
   el.innerHTML=APOIOS.map((a,idx)=>`<div class="apoio-item">
-    <div><strong>${N[a.nucIdx].tecnicos[a.tecIdx]}</strong> <em style="color:#64748b;font-size:.75rem">(${N[a.nucIdx].sigla})</em>
+    <div><strong>${N[a.nucIdx].tecnicos[a.tecIdx]?N[a.nucIdx].tecnicos[a.tecIdx].nome:'?'}</strong> <em style="color:#64748b;font-size:.75rem">(${N[a.nucIdx].sigla})</em>
     <span style="color:#d97706;margin:0 6px">→ apoia →</span><strong>${N[a.apoioIdx].nome}</strong></div>
     <button class="bd" onclick="remApoio(${idx})"><i class="fas fa-unlink"></i> Remover</button>
   </div>`).join('');
 }
 
 // ============================================================
-// TAGS
+// TAGS (apenas para nucleo - telefones e municipios)
 // ============================================================
-const TG={tel:[],tnuc:[],mun:[]};
+const TG={tnuc:[],mun:[]};
 function addTag(e,tp){
   if(e.key!=='Enter'&&e.key!==',')return;e.preventDefault();
-  const ids={tel:['telI','telW'],tnuc:['tnI','tnW'],mun:['mnI','mnW']};
+  const ids={tnuc:['tnI','tnW'],mun:['mnI','mnW']};
   const[iId,wId]=ids[tp];
   const v=document.getElementById(iId).value.trim();if(!v)return;
   TG[tp].push(v);document.getElementById(iId).value='';showTags(tp,wId);
@@ -676,26 +748,44 @@ function setTags(tp,wId,arr){TG[tp]=[...arr];showTags(tp,wId);}
 function clrTags(tp,wId){TG[tp]=[];showTags(tp,wId);}
 
 // ============================================================
-// CRUD
+// CRUD TÉCNICOS
 // ============================================================
 function salvar(){
   const ni=document.getElementById('fNucForm').value,nm=document.getElementById('fNome').value.trim();
   if(!ni||!nm){alerta('err','Preencha o núcleo e o nome.');return;}
+  const cel=document.getElementById('fCel').value.trim();
+  const wpp=document.getElementById('fWpp').value.trim();
+  const em=document.getElementById('fEmail').value.trim();
   const eidx=document.getElementById('eIdx').value;
-  if(eidx){const[a,b]=eidx.split('-').map(Number);N[a].tecnicos[b]=nm;if(TG.tel.length)N[a].telefones=[...TG.tel];const em=document.getElementById('fEmail').value.trim();if(em)N[a].email=em;alerta('ok',`"${nm}" atualizado!`);}
-  else{N[+ni].tecnicos.push(nm);TG.tel.forEach(t=>{if(!N[+ni].telefones.includes(t))N[+ni].telefones.push(t);});alerta('ok',`"${nm}" cadastrado!`);}
+  if(eidx){
+    const[a,b]=eidx.split('-').map(Number);
+    N[a].tecnicos[b].nome=nm;
+    N[a].tecnicos[b].cel=cel;
+    N[a].tecnicos[b].whatsapp=wpp||cel;
+    if(em)N[a].email=em;
+    alerta('ok',`"${nm}" atualizado!`);
+  }else{
+    N[+ni].tecnicos.push({nome:nm,cel:cel,whatsapp:wpp||cel});
+    if(em)N[+ni].email=em;
+    alerta('ok',`"${nm}" cadastrado!`);
+  }
   salvarDados();limpar();renderCards();renderLista();popApoioSels();
   if(lMap)buildMapaSidebar();
 }
 function editTec(a,b){
-  document.getElementById('fNucForm').value=a;document.getElementById('fNome').value=N[a].tecnicos[b];
+  const t=N[a].tecnicos[b];
+  document.getElementById('fNucForm').value=a;
+  document.getElementById('fNome').value=t.nome;
+  document.getElementById('fCel').value=t.cel||'';
+  document.getElementById('fWpp').value=t.whatsapp||'';
+  document.getElementById('fEmail').value=N[a].email||'';
   document.getElementById('eIdx').value=`${a}-${b}`;
-  document.getElementById('fTit').textContent='Editar Técnico';document.getElementById('btnTxt').textContent='Salvar Alteração';
-  setTags('tel','telW',N[a].telefones);document.getElementById('fEmail').value=N[a].email||'';
+  document.getElementById('fTit').textContent='Editar Técnico';
+  document.getElementById('btnTxt').textContent='Salvar Alteração';
   document.getElementById('fNucForm').scrollIntoView({behavior:'smooth',block:'center'});
 }
 function delTec(a,b){
-  const nm=N[a].tecnicos[b];if(!confirm(`Excluir "${nm}"?`))return;
+  const nm=N[a].tecnicos[b].nome;if(!confirm(`Excluir "${nm}"?`))return;
   for(let i=APOIOS.length-1;i>=0;i--){
     if(APOIOS[i].nucIdx===a&&APOIOS[i].tecIdx===b)APOIOS.splice(i,1);
     else if(APOIOS[i].nucIdx===a&&APOIOS[i].tecIdx>b)APOIOS[i].tecIdx--;
@@ -704,10 +794,14 @@ function delTec(a,b){
   alerta('ok',`"${nm}" removido.`);
 }
 function limpar(){
-  document.getElementById('eIdx').value='';document.getElementById('fNucForm').value='';
-  document.getElementById('fNome').value='';document.getElementById('fEmail').value='';
-  document.getElementById('fTit').textContent='Cadastrar Técnico';document.getElementById('btnTxt').textContent='Cadastrar Técnico';
-  clrTags('tel','telW');
+  document.getElementById('eIdx').value='';
+  document.getElementById('fNucForm').value='';
+  document.getElementById('fNome').value='';
+  document.getElementById('fCel').value='';
+  document.getElementById('fWpp').value='';
+  document.getElementById('fEmail').value='';
+  document.getElementById('fTit').textContent='Cadastrar Técnico';
+  document.getElementById('btnTxt').textContent='Cadastrar Técnico';
 }
 function renderLista(){
   const fn=document.getElementById('filtNome').value.toLowerCase(),fni=document.getElementById('filtNucLista').value;
@@ -715,11 +809,13 @@ function renderLista(){
   N.forEach((n,ni)=>{
     if(fni!==''&&+fni!==ni)return;
     n.tecnicos.forEach((t,ti)=>{
-      if(fn&&!t.toLowerCase().includes(fn))return;tot++;
+      if(fn&&!t.nome.toLowerCase().includes(fn))return;tot++;
       const c=COR[ni];
       const apB=APOIOS.filter(a=>a.nucIdx===ni&&a.tecIdx===ti).map(a=>`<em style="font-size:.7rem;color:#d97706">→ ${N[a.apoioIdx].nome.split(' ')[0]}</em>`).join(' ');
+      const telInfo=t.cel?`<span style="color:#1d4ed8;font-size:.72rem"><i class="fas fa-phone"></i> ${t.cel}</span>`:'';
       html+=`<div class="si" style="border-left-color:${c}">
-        <div><div class="sn">${t}</div><div class="snu" style="background:${c}">${n.sigla}</div>
+        <div><div class="sn">${t.nome}</div><div class="snu" style="background:${c}">${n.sigla}</div>
+        ${telInfo}
         ${apB?`<div style="margin-top:3px">${apB}</div>`:''}
         <div class="sd">${n.municipios.length} mun · ${n.email}</div></div>
         <div class="sa"><button class="be" onclick="editTec(${ni},${ti})"><i class="fas fa-pen"></i></button><button class="bd" onclick="delTec(${ni},${ti})"><i class="fas fa-trash"></i></button></div>
@@ -729,25 +825,39 @@ function renderLista(){
   document.getElementById('srvList').innerHTML=html||'<p style="text-align:center;color:#94a3b8;padding:18px">Nenhum encontrado.</p>';
   document.getElementById('cnt').textContent=tot;
 }
+
+// ============================================================
+// CRUD NÚCLEO
+// ============================================================
 function loadNuc(){
   const idx=document.getElementById('editNuc').value;if(!idx)return;
-  const n=N[+idx];document.getElementById('eEmail').value=n.email;document.getElementById('eEnd').value=n.endereco;
-  document.getElementById('tnI').value='';document.getElementById('mnI').value='';
-  setTags('tnuc','tnW',n.telefones);setTags('mun','mnW',n.municipios);
+  const n=N[+idx];
+  document.getElementById('eEmail').value=n.email||'';
+  document.getElementById('eEnd').value=n.endereco||'';
+  document.getElementById('tnI').value='';
+  document.getElementById('mnI').value='';
+  setTags('tnuc','tnW',n.telefones||[]);
+  setTags('mun','mnW',n.municipios||[]);
 }
 function salvarNuc(){
   const idx=document.getElementById('editNuc').value;if(!idx){alert('Selecione um núcleo.');return;}
   const i=+idx;
-  N[i].email=document.getElementById('eEmail').value.trim();N[i].endereco=document.getElementById('eEnd').value.trim();
-  N[i].telefones=[...TG.tnuc];N[i].municipios=[...TG.mun];
-  salvarDados();alerta('ok',`Núcleo ${N[i].nome} atualizado!`);renderCards();renderLista();
+  N[i].email=document.getElementById('eEmail').value.trim();
+  N[i].endereco=document.getElementById('eEnd').value.trim();
+  N[i].telefones=[...TG.tnuc];
+  N[i].municipios=[...TG.mun];
+  salvarDados();
+  alerta('ok',`Núcleo ${N[i].nome} atualizado!`);
+  renderCards();renderLista();
   if(lMap)buildMapaSidebar();
 }
+
 function alerta(tp,msg){
   const el=document.getElementById(tp==='ok'?'aOk':'aErr');
   document.getElementById(tp==='ok'?'aOkMsg':'aErrMsg').textContent=msg;
   el.style.display='flex';clearTimeout(el._t);el._t=setTimeout(()=>el.style.display='none',4000);
 }
+
 function popSels(){
   ['fNucForm','filtNucLista','editNuc','filtRelNuc'].forEach(id=>{
     const el=document.getElementById(id);if(!el)return;
@@ -759,14 +869,25 @@ function popSels(){
 }
 
 // ============================================================
-// PDF
+// PDF / RELATÓRIO
 // ============================================================
 function getRows(){
   const fi=document.getElementById('filtRelNuc').value,rows=[];
   N.forEach((n,i)=>{
     if(fi!==''&&+fi!==i)return;
     const ap=getApoiadores(i).map(a=>a.nome).join('; ')||'—';
-    n.tecnicos.forEach(t=>rows.push({tecnico:t,nucleo:n.nome,sigla:n.sigla,email:n.email,telefones:n.telefones.join(' / '),municipios:n.municipios.join(', '),endereco:n.endereco,apoio:ap}));
+    n.tecnicos.forEach(t=>rows.push({
+      tecnico:t.nome,
+      nucleo:n.nome,
+      sigla:n.sigla,
+      email:n.email,
+      celular:t.cel||'',
+      whatsapp:t.whatsapp||'',
+      municipios:n.municipios.join(', '),
+      endereco:n.endereco,
+      telNucleo:n.telefones?n.telefones.join(' / '):'',
+      apoio:ap
+    }));
   });return rows;
 }
 function getCols(){
@@ -774,10 +895,11 @@ function getCols(){
   if(document.getElementById('c1').checked)c.push({k:'tecnico',l:'Técnico'});
   if(document.getElementById('c2').checked)c.push({k:'sigla',l:'Núcleo'});
   if(document.getElementById('c3').checked)c.push({k:'email',l:'E-mail'});
-  if(document.getElementById('c4').checked)c.push({k:'telefones',l:'Telefone(s)'});
+  if(document.getElementById('c4').checked)c.push({k:'celular',l:'Celular/WhatsApp'});
   if(document.getElementById('c5').checked)c.push({k:'municipios',l:'Municípios'});
   if(document.getElementById('c6').checked)c.push({k:'endereco',l:'Endereço'});
   if(document.getElementById('c7').checked)c.push({k:'apoio',l:'Téc. de Apoio'});
+  if(document.getElementById('c8').checked)c.push({k:'telNucleo',l:'Tel. Núcleo'});
   return c;
 }
 function prevT(){
@@ -785,7 +907,8 @@ function prevT(){
   let h=`<table class="rt"><thead><tr>${cols.map(c=>`<th>${c.l}</th>`).join('')}</tr></thead><tbody>`;
   rows.forEach(r=>h+=`<tr>${cols.map(c=>`<td>${(r[c.k]||'').slice(0,120)}</td>`).join('')}</tr>`);
   h+='</tbody></table>';
-  document.getElementById('pvCont').innerHTML=h;const pb=document.getElementById('pvb');pb.style.display='block';pb.scrollIntoView({behavior:'smooth'});
+  document.getElementById('pvCont').innerHTML=h;
+  const pb=document.getElementById('pvb');pb.style.display='block';pb.scrollIntoView({behavior:'smooth'});
 }
 function gerarPDF(){
   const rows=getRows(),cols=getCols(),fi=document.getElementById('filtRelNuc').value,fl=fi!==''?N[+fi].nome:'Todos os Núcleos';
@@ -794,10 +917,12 @@ function gerarPDF(){
   w.document.close();setTimeout(()=>{w.focus();w.print();},600);
 }
 
+// ============================================================
+// INIT
+// ============================================================
 function init(){
   carregarDados();renderCards();popSels();popApoioSels();renderLista();renderApoioLista();
 }
-
 window.onload=init;
 </script>
 </body>
